@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" />
 
 <link href="css/styles.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 
 <body id="page-top">
@@ -23,12 +24,16 @@
 <a class="navbar-brand js-scroll-trigger" href="#page-top">
 <span class="d-block d-lg-none">Tushar Ojha</span>
 <span class="d-none d-lg-block">
-<img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="">
+<img class="img-fluid img-profile rounded mx-auto mb-2" src="assets/img/profile.jpg" alt="">
 </span>
 </a>
 
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
 <span class="navbar-toggler-icon"></span>
+</button>
+
+<button id="theme-toggle" class="btn btn-outline-light ml-3" title="Toggle Theme">
+<span id="theme-icon">🌙</span>
 </button>
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -39,18 +44,18 @@
 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Projects</a></li>
 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#certifications">Certifications</a></li>
-</ul>
+<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
 </div>
 </nav>
 
 <div class="container-fluid p-0">
 
 <!-- ABOUT -->
-<section class="resume-section" id="about">
+<section class="resume-section animate-on-scroll" id="about">
 <div class="resume-section-content">
 
-<h1 class="mb-0">Tushar <span class="text-primary">Ojha</span></h1>
-<p class="lead mb-3">Senior Software Engineer | Cloud | DevSecOps | SRE</p>
+<h1 class="mb-0 text-center">Tushar <span class="text-primary">Ojha</span></h1>
+<p class="lead mb-3 text-center"></p>
 
 <p>
 Senior Cloud, DevSecOps & SRE Engineer with 4 years of experience building and operating AWS and Azure infrastructure using Terraform.
@@ -74,7 +79,7 @@ Specialized in cloud migration, CI/CD automation, Kubernetes orchestration, and 
 <hr class="m-0" />
 
 <!-- EXPERIENCE -->
-<section class="resume-section" id="experience">
+<section class="resume-section animate-on-scroll" id="experience">
 <div class="resume-section-content">
 
 <h2 class="mb-5">Experience</h2>
@@ -107,16 +112,28 @@ Specialized in cloud migration, CI/CD automation, Kubernetes orchestration, and 
 <hr class="m-0" />
 
 <!-- SKILLS -->
-<section class="resume-section" id="skills">
+<section class="resume-section animate-on-scroll" id="skills">
 <div class="resume-section-content">
 
 <h2 class="mb-5">Skills</h2>
 
-<p><strong>Cloud:</strong> AWS, Azure, Terraform, Kubernetes, Docker</p>
-<p><strong>CI/CD:</strong> Jenkins, Ansible, GitHub Actions, Control-M</p>
-<p><strong>Programming:</strong> Python, Bash, Java, SQL, Groovy</p>
-<p><strong>Monitoring:</strong> CloudWatch, Prometheus, Grafana, Splunk</p>
-<p><strong>Databases:</strong> PostgreSQL, MySQL, MSSQL, MongoDB</p>
+<div class="row">
+<div class="col-md-4 mb-3">
+<strong>Cloud:</strong> AWS, Azure, Terraform, Kubernetes, Docker
+</div>
+<div class="col-md-4 mb-3">
+<strong>CI/CD:</strong> Jenkins, Ansible, GitHub Actions, Control-M
+</div>
+<div class="col-md-4 mb-3">
+<strong>Programming:</strong> Python, Bash, Java, SQL, Groovy
+</div>
+<div class="col-md-4 mb-3">
+<strong>Monitoring:</strong> CloudWatch, Prometheus, Grafana, Splunk
+</div>
+<div class="col-md-4 mb-3">
+<strong>Databases:</strong> PostgreSQL, MySQL, MSSQL, MongoDB
+</div>
+</div>
 
 </div>
 </section>
@@ -124,18 +141,49 @@ Specialized in cloud migration, CI/CD automation, Kubernetes orchestration, and 
 <hr class="m-0" />
 
 <!-- PROJECTS -->
-<section class="resume-section" id="projects">
+<section class="resume-section animate-on-scroll" id="projects">
 <div class="resume-section-content">
 
 <h2 class="mb-5">Key Projects</h2>
 
-<ul>
-<li>Migrated legacy services to AWS using Terraform</li>
-<li>Implemented cloud monitoring and cost optimization</li>
-<li>Developed internal automation tool (Python + Django)</li>
-<li>Provisioned full infrastructure using Terraform + Ansible</li>
-<li>Tier-0 Regdata secure deployment pipeline</li>
-</ul>
+<div class="row">
+<div class="col-md-6 mb-4">
+<div class="card h-100">
+<div class="card-body">
+<i class="fas fa-cloud fa-2x text-primary mb-3"></i>
+<h5 class="card-title">AWS Migration with Terraform</h5>
+<p class="card-text">Migrated legacy services to AWS using Terraform, reducing provisioning effort by 60%.</p>
+</div>
+</div>
+</div>
+<div class="col-md-6 mb-4">
+<div class="card h-100">
+<div class="card-body">
+<i class="fas fa-cogs fa-2x text-primary mb-3"></i>
+<h5 class="card-title">CI/CD Automation</h5>
+<p class="card-text">Automated CI/CD using Jenkins and Ansible, reducing manual deployments by 70%.</p>
+</div>
+</div>
+</div>
+<div class="col-md-6 mb-4">
+<div class="card h-100">
+<div class="card-body">
+<i class="fas fa-code fa-2x text-primary mb-3"></i>
+<h5 class="card-title">Internal Automation Tool</h5>
+<p class="card-text">Developed an internal automation tool using Python + Django.</p>
+</div>
+</div>
+</div>
+<div class="col-md-6 mb-4">
+<div class="card h-100">
+<div class="card-body">
+<i class="fas fa-dollar-sign fa-2x text-primary mb-3"></i>
+<h5 class="card-title">Cost Optimization</h5>
+<p class="card-text">Implemented cost optimization strategies saving ~30% annually.</p>
+</div>
+</div>
+</div>
+</div>
 
 </div>
 </section>
@@ -143,7 +191,7 @@ Specialized in cloud migration, CI/CD automation, Kubernetes orchestration, and 
 <hr class="m-0" />
 
 <!-- EDUCATION -->
-<section class="resume-section" id="education">
+<section class="resume-section animate-on-scroll" id="education">
 <div class="resume-section-content">
 
 <h2 class="mb-5">Education</h2>
@@ -159,7 +207,7 @@ Specialized in cloud migration, CI/CD automation, Kubernetes orchestration, and 
 <hr class="m-0" />
 
 <!-- CERTIFICATIONS -->
-<section class="resume-section" id="certifications">
+<section class="resume-section animate-on-scroll" id="certifications">
 <div class="resume-section-content">
 
 <h2 class="mb-5">Certifications</h2>
@@ -172,7 +220,42 @@ Specialized in cloud migration, CI/CD automation, Kubernetes orchestration, and 
 </div>
 </section>
 
+<hr class="m-0" />
+
+<!-- CONTACT -->
+<section class="resume-section animate-on-scroll" id="contact">
+<div class="resume-section-content">
+
+<h2 class="mb-5">Contact</h2>
+
+<p>Feel free to reach out for collaborations or opportunities!</p>
+
+<form class="contact-form text-center">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Your Name" required>
 </div>
+<div class="form-group">
+<input type="email" class="form-control" placeholder="Your Email" required>
+</div>
+<div class="form-group">
+<textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+</div>
+<button type="submit" class="btn btn-primary">Send Message</button>
+</form>
+
+</div>
+</section>
+
+</div>
+
+<footer class="bg-primary text-white text-center py-3">
+<p>&copy; 2026 Tushar Ojha. All rights reserved.</p>
+</footer>
+
+<!-- Back to Top Button -->
+<a id="back-to-top" href="#page-top" class="btn btn-primary back-to-top" title="Back to Top">
+<i class="fas fa-arrow-up"></i>
+</a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
