@@ -1,121 +1,53 @@
-/*!
-    * Start Bootstrap - Resume v6.0.1 (https://startbootstrap.com/template-overviews/resume)
-    * Copyright 2013-2020 Start Bootstrap
-    * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-resume/blob/master/LICENSE)
-    */
-    (function ($) {
-    "use strict"; // Start of use strict
+(function () {
+  'use strict';
 
-    // Smooth scrolling using jQuery easing
-    $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
-        if (
-            location.pathname.replace(/^\//, "") ==
-                this.pathname.replace(/^\//, "") &&
-            location.hostname == this.hostname
-        ) {
-            var target = $(this.hash);
-            target = target.length
-                ? target
-                : $("[name=" + this.hash.slice(1) + "]");
-            if (target.length) {
-                $("html, body").animate(
-                    {
-                        scrollTop: target.offset().top,
-                    },
-                    1000,
-                    "easeInOutExpo"
-                );
-                return false;
-            }
-        }
-    });
+  var root = document.documentElement;
 
-    // Closes responsive menu when a scroll trigger link is clicked
-    $(".js-scroll-trigger").click(function () {
-        $(".navbar-collapse").collapse("hide");
-    });
+  // Theme toggle (remembers choice, falls back to system preference)
+  var themeBtn = document.getElementById('theme-toggle');
+  function isDark() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function syncThemeBtn() {
+    var dark = isDark();
+    themeBtn.textContent = dark ? 'Light' : 'Dark';
+    themeBtn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+  themeBtn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    syncThemeBtn();
+  });
+  syncThemeBtn();
 
-    // Activate scrollspy to add active class to navbar items on scroll
-    $("body").scrollspy({
-        target: "#sideNav",
-    });
+  // Mobile menu
+  var menuBtn = document.getElementById('menu-btn');
+  var nav = document.getElementById('nav');
+  function setMenu(open) {
+    nav.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+  }
+  menuBtn.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
+  nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
 
-    // Typing effect for lead
-    var typed = new Typed('.lead', {
-        strings: ["Senior Software Engineer | Cloud | DevSecOps | SRE"],
-        typeSpeed: 50,
-        backSpeed: 25,
-        loop: true
-    });
-
-    // Scroll animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
-            }
+  // Highlight the nav link for the section in view
+  var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        links.forEach(function (a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
         });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.animate-on-scroll').forEach(section => {
-        observer.observe(section);
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    links.forEach(function (a) {
+      var s = document.querySelector(a.getAttribute('href'));
+      if (s) io.observe(s);
     });
-
-    // Theme toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    const themeIcon = document.getElementById('theme-icon');
-
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    body.classList.toggle('dark', currentTheme === 'dark');
-    themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
-
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark');
-        const isDark = body.classList.contains('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        themeIcon.textContent = isDark ? '☀️' : '🌙';
-    });
-
-    // Back to Top Button
-    const backToTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTop.classList.add('show');
-        } else {
-            backToTop.classList.remove('show');
-        }
-    });
-
-    // Form Validation
-    const contactForm = document.querySelector('.contact-form');
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = contactForm.querySelector('input[type="text"]').value.trim();
-        const email = contactForm.querySelector('input[type="email"]').value.trim();
-        const message = contactForm.querySelector('textarea').value.trim();
-
-        if (!name || !email || !message) {
-            alert('Please fill in all fields.');
-            return;
-        }
-        if (!/\S+@\S+\.\S+/.test(email)) {
-            alert('Please enter a valid email.');
-            return;
-        }
-        alert('Message sent successfully!');
-        contactForm.reset();
-    });
-
-    // Navbar shrink on scroll
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('navbar-shrink');
-        } else {
-            navbar.classList.remove('navbar-shrink');
-        }
-    });
-
-})(jQuery); // End of use strict
+  }
+})();
